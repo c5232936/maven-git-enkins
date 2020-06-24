@@ -12,7 +12,7 @@ try{
 	stage('Deploy to Dev'){
 		sh 'mv target/*.war target/myweb.war'
 		sshagent(['tomcat-dev']) {
-			sh 'ssh 192.168.65.157 rm -rf /opt/tomcat8/webapps/myweb*'
+			sh 'ssh user1@192.168.65.157 rm -rf /opt/tomcat8/webapps/myweb*'
 		    sh 'scp target/myweb.war user1@192.168.65.157:/opt/tomcat8/webapps/'
 		    sh 'ssh user1@192.168.65.157 sudo service tomcat restart'
 		}
