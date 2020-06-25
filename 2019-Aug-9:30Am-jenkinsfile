@@ -4,7 +4,7 @@ node('master'){
     
     stage('Git Clone/Pull'){
         git branch: 'dev', 
-			url: 'https://github.com/javahometech/my-app'
+			url: 'https://github.com/maven-git-enkins/my-app'
     }
 	
 	stage('Build Docker Image'){
@@ -37,7 +37,7 @@ node('master'){
 	stage('Deploy On Dev'){
 		sshagent (credentials: ['dev-docker']) {
 		 def dockerRun = "docker run -d -p 8080:8080 --name=my-app kammana/my-app:1.0"
-		 sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.43.90  ${dockerRun} "
+		 sh "ssh -o StrictHostKeyChecking=no user1@192.168.65.156  ${dockerRun} "
 		}
 	}
     
